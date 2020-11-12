@@ -34,4 +34,9 @@
     produtoEmDestaque {
           nome preco desconto precoComDesconto
     }
+
+    usuario(id: 2) {
+      nome
+      id
+    }
   ```
