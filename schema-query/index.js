@@ -25,7 +25,7 @@ const typeDefs = gql`
     scalar Date
 
     type Usuario {
-        id: ID
+        id: Int
         nome: String!
         email: String!
         idade: Int
@@ -48,6 +48,7 @@ const typeDefs = gql`
         produtoEmDestaque: Produto
         numerosMegaSena: [Int!]!
         usuarios: [Usuario]
+        usuario(id: Int): Usuario
     }
 `
 
@@ -97,6 +98,12 @@ const resolvers = {
         },
         usuarios () {
             return usuarios
+        },
+        // esse primeiro parâmetro de um resolver sempre é um objeto, e no caso da query ele vem 'undefined', por isso do underline
+        // para significar um dont'care
+        usuario (_, args) {
+            const selecionados = usuarios.filter(u => u.id === args.id)
+            return selecionados ? selecionados[0] : null
         }
     }
 }
