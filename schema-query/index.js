@@ -101,8 +101,8 @@ const resolvers = {
         },
         // esse primeiro parâmetro de um resolver sempre é um objeto, e no caso da query ele vem 'undefined', por isso do underline
         // para significar um dont'care
-        usuario (_, args) {
-            const selecionados = usuarios.filter(u => u.id === args.id)
+        usuario (_, { id }) {
+            const selecionados = usuarios.filter(u => u.id === id)
             return selecionados ? selecionados[0] : null
         }
     }
