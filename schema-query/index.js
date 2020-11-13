@@ -1,25 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server')
 
-const usuarios = [
-    {
-        id: 1,
-        nome: 'João Silva',
-        email: 'jsilva@gmai..com',
-        idade: 29
-    },
-    {
-        id: 2,
-        nome: 'Rafael Júnior',
-        email: 'rafajun@gmail.com',
-        idade: 31
-    },
-    {
-        id: 3,
-        nome: 'Daniela Junqueira',
-        email: 'danijun@gmail.com',
-        idade: 24
-    }
-]
 
 const perfis = [
     {
@@ -31,6 +11,31 @@ const perfis = [
         nome: 'Administrador'
     }
 ]
+
+const usuarios = [
+    {
+        id: 1,
+        nome: 'João Silva',
+        email: 'jsilva@gmai..com',
+        idade: 29,
+        perfil_id: 1
+    },
+    {
+        id: 2,
+        nome: 'Rafael Júnior',
+        email: 'rafajun@gmail.com',
+        idade: 31,
+        perfil_id: 2
+    },
+    {
+        id: 3,
+        nome: 'Daniela Junqueira',
+        email: 'danijun@gmail.com',
+        idade: 24,
+        perfil_id: 1
+    }
+]
+
 
 const typeDefs = gql`
     scalar Date
@@ -47,6 +52,7 @@ const typeDefs = gql`
         idade: Int
         salario: Float
         vip: Boolean
+        perfil: Perfil
     }
 
     type Produto {
@@ -75,6 +81,10 @@ const resolvers = {
         // esse atributo é o retorno do resolver 'usuarioLogado'
         salario(usuario) {
             return usuario.salario_real
+        },
+        perfil(usuario) {
+            const selecionados = perfis.filter(p => p.id === usuario.perfil_id)
+            return selecionados ?  selecionados[0] : null
         }
     },
     Produto: {
@@ -127,7 +137,7 @@ const resolvers = {
             return perfis
         },
         perfil (_, args) {
-            const selecionados = perfis.filter(p => p.id == args.id)
+            const selecionados = perfis.filter(p => p.id === args.id)
             return selecionados ?  selecionados[0] : null
         }
     }
