@@ -28,15 +28,42 @@
 - A exclamação nos ```types``` é para dizer que sempre irá retornar exatamente o tipo especificado, não aceitando valores nulos.
 - Por padrão, temos os seguites tipos de ```scalar```: String, Int, Float, ID, Boolean
 - Em ```Query``` colocamos os pontos de entrada da API. É como se fosse os recursos(exemplo: ```/produtos```) das API's REST's.
-- Exemplo de consulta GraphQL:
+- **Exemplo de consulta GraphQL (com e sem parâmetro)**:
 
   ```graphql 
-    produtoEmDestaque {
-          nome preco desconto precoComDesconto
-    }
 
     usuario(id: 2) {
       nome
       id
     }
+
+    produtoEmDestaque {
+          nome preco desconto precoComDesconto
+    }
+    
   ```
+
+- **```Fragments```** são utilizados para reutilização de dados, para evitar a repetição de campos. 
+Exemplo de um ```fragment```: 
+```graphql
+  query {
+    usuario(id: 3) {
+      ...usuarioCompleto
+    }
+    
+    usuarios {
+      ...usuarioCompleto
+    }
+  }
+
+  # Fragment
+  fragment usuarioCompleto on Usuario {
+    
+    id nome email idade salario vip
+    
+    perfil {
+      nome
+      id
+    }
+  }
+```
