@@ -60,6 +60,16 @@
     }
     
   ```
+  
+   - **Exemplo de mutation GraphQL (delete)**:
+
+  ```graphql 
+
+    excluirUsuario(id: 2) {
+      nome id
+    }
+    
+  ```
 
 - **```Fragments```** são utilizados para reutilização de dados, para evitar a repetição de campos. 
 Exemplo de um ```fragment```: 
