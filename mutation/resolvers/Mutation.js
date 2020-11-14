@@ -2,9 +2,9 @@ const { usuarios, proximoId } = require('../data/db')
 
 module.exports = {
     // {nome, email, idade}
-    novoUsuario(_, args) {
+    novoUsuario(_, { dados }) {
         const emailExistente = usuarios.some(
-            u => u.email === args.email
+            u => u.email === dados.email
         )
 
         if(emailExistente) {
@@ -13,7 +13,7 @@ module.exports = {
 
         const novo = {
             id: proximoId(),
-            ...args,
+            ...dados,
             perfil_id: 1,
             status: 'ATIVO'
         }
