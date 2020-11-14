@@ -42,6 +42,24 @@
     }
     
   ```
+  
+ - **Exemplo de mutation GraphQL (create)**:
+
+  ```graphql 
+
+   novoUsuario(
+      nome: "Ana"
+      email: "ana@ana.com"
+      idade: 34
+    ) {
+      id nome email 
+      perfil 
+      { 
+        nome 
+      }
+    }
+    
+  ```
 
 - **```Fragments```** são utilizados para reutilização de dados, para evitar a repetição de campos. 
 Exemplo de um ```fragment```: 
