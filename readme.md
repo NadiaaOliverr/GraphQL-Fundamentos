@@ -61,7 +61,7 @@
 
     ```
   
-   - **Exemplo de mutation GraphQL (delete)**:
+ - **Exemplo de mutation GraphQL (delete)**:
 
     ```graphql 
 
