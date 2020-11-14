@@ -45,43 +45,53 @@
   
  - **Exemplo de mutation GraphQL (create)**:
 
-  ```graphql 
+    ```graphql 
 
-   novoUsuario(
-      nome: "Ana"
-      email: "ana@ana.com"
-      idade: 34
-    ) {
-      id nome email 
-      perfil 
-      { 
-        nome 
+     novoUsuario(
+        nome: "Ana"
+        email: "ana@ana.com"
+        idade: 34
+      ) {
+        id nome email 
+        perfil 
+        { 
+          nome 
+        }
       }
-    }
-    
-  ```
+
+    ```
+  
+ - **Exemplo de mutation GraphQL (delete)**:
+
+    ```graphql 
+
+      excluirUsuario(id: 2) {
+        nome id
+      }
+
+    ```
 
 - **```Fragments```** são utilizados para reutilização de dados, para evitar a repetição de campos. 
 Exemplo de um ```fragment```: 
-```graphql
-  query {
-    usuario(id: 3) {
-      ...usuarioCompleto
-    }
-    
-    usuarios {
-      ...usuarioCompleto
-    }
-  }
+  ```graphql
+    query {
+      usuario(id: 3) {
+        ...usuarioCompleto
+      }
 
-  # Fragment
-  fragment usuarioCompleto on Usuario {
-    
-    id nome email idade salario vip
-    
-    perfil {
-      nome
-      id
+      usuarios {
+        ...usuarioCompleto
+      }
     }
-  }
-```
+
+    # Fragment
+    fragment usuarioCompleto on Usuario {
+
+      id nome email idade salario vip
+
+      perfil {
+        nome
+        id
+      }
+    }
+  ```
