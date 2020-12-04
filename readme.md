@@ -95,3 +95,16 @@ Exemplo de um ```fragment```:
       }
     }
   ```
+- Input: agrupar o que mandamos de argumento para os **resolvers**, exemplo de consulta com um input que chama ```dados```:
+
+  ```graphql
+    novoUsuario(
+        dados: {
+          nome: "Ana com Input"
+          email: "anacinput@ana.com"
+          idade: 34
+        }
+      ) {
+        id nome email perfil { nome }
+      }
+  ```
