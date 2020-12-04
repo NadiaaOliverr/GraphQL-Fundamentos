@@ -108,3 +108,11 @@ Exemplo de um ```fragment```:
         id nome email perfil { nome }
       }
   ```
+
+#### Banco de dados com GraphQL 
+
+- Dependências necessárias:
+  - [knex](http://knexjs.org/) 
+  - [mysql](https://www.mysql.com/)
+  - Executar: ```npm i -s knex mysql```
+- Criando as migrations: ```npx knex migrate:make nomedamigrate```
